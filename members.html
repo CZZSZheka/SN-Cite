@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Участники Сообщества Николая (СН)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Roboto:wght@300;400;500&display=swap">
+    <style>
+        :root {
+            --primary-green: #0a5c36;
+            --dark-green: #08482b;
+            --light-green: #1e7d4e;
+            --gold: #d4af37;
+            --light-gold: #f4d03f;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-green);
+            color: var(--white);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Шапка */
+        .main-header {
+            background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
+            color: var(--white);
+            padding: 1.2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='shield' patternUnits='userSpaceOnUse' width='120' height='120'%3E%3Cpath d='M60,10 L110,35 L110,85 L60,110 L10,85 L10,35 Z' fill='none' stroke='%23ffffff' stroke-width='2' stroke-opacity='0.15'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23shield)'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo-text {
+            text-align: left;
+        }
+
+        h1 {
+            font-family: 'Philosopher', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.8px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Навигационная панель */
+        .site-navigation {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+            padding: 0.8rem 1rem;
+            border-bottom: 2px solid var(--gold);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-btn {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
+            color: var(--dark-green);
+            border-color: var(--gold);
+        }
+        
+        .nav-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* Основной контент */
+        .members-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .page-title h2 {
+            font-family: 'Philosopher', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Секции участников */
+        .section {
+            margin-bottom: 2.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--gold);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .section-title {
+            font-family: 'Philosopher', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+
+        /* Карточки участников */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .member-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .member-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .member-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark-green);
+            flex-shrink: 0;
+        }
+
+        .member-name {
+            font-family: 'Philosopher', serif;
+            font-size: 1.4rem;
+            color: var(--white);
+        }
+
+        .member-role {
+            font-size: 0.9rem;
+            color: var(--light-gold);
+            background: rgba(212, 175, 55, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 0.3rem;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .member-achievements {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .achievement-title {
+            color: var(--light-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .achievement-list {
+            list-style-type: none;
+        }
+
+        .achievement-list li {
+            margin-bottom: 0.4rem;
+            padding-left: 1.2rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .achievement-list li:before {
+            content: "•";
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Список стражей */
+        .guards-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .guard-item {
+            background: rgba(30, 125, 78, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--light-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guard-icon {
+            color: var(--light-green);
+            font-size: 1.2rem;
+        }
+
+        .guard-name {
+            font-weight: 500;
+        }
+
+        /* Футер */
+        .main-footer {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 2px solid var(--gold);
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            opacity: 0.85;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            opacity: 0.7;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1.2rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .page-title h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-header {
+                padding: 1rem;
+            }
+            
+            .member-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .member-name {
+                text-align: center;
+            }
+            
+            .guards-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="main-header">
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Сообщество Николая</h1>
+                    <p class="subtitle">Участники и структура сообщества</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигация по сайту -->
+    <nav class="site-navigation">
+        <div class="nav-container">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-home"></i> Главная
+            </a>
+            <a href="uri.html" class="nav-btn">
+                <i class="fas fa-balance-scale"></i> Юридический портал
+            </a>
+            <a href="legal.html" class="nav-btn">
+                <i class="fas fa-address-book"></i> Законодательная информация
+            </a>
+            <a href="chat.html" class="nav-btn">
+                <i class="fas fa-comments"></i> Чат сообщества
+            </a>
+            <a href="members.html" class="nav-btn active">
+                <i class="fas fa-users"></i> Участники
+            </a>
+            <a href="projects.html" class="nav-btn">
+                <i class="fas fa-project-diagram"></i> Проекты
+            </a>
+            <a href="contacts.html" class="nav-btn active">
+                <i class="fas fa-address-book"></i> Контакты
+            </a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="members-container">
+        <div class="page-title">
+            <h2>Участники Сообщества Николая</h2>
+            <p>Активные члены и структура сообщества. Все участники равны в правах и несут ответственность за развитие СН.</p>
+        </div>
+
+        <!-- Секция: Основатель -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h2 class="section-title">Основатель сообщества</h2>
+            </div>
+            
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">Н</div>
+                        <div>
+                            <h3 class="member-name">Николай (NikolayG)</h3>
+                            <span class="member-role">Основатель СН/СЖЗС</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Создатель сообщества, ведущий идеолог и стратег. Основал СЖЗС в 2020 году, преобразовал его в мирное Сообщество Николая.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличился:</div>
+                            <ul class="achievement-list">
+                                <li>Создание и развитие сообщества с 2020 года</li>
+                                <li>Лидерство в крупнейших операциях против нарушителей</li>
+                                <li>Формирование идеологии гуманизма и миротворчества</li>
+                                <li>Медиация конфликтов и дипломатия</li>
+                                <li>Творческое развитие (вселенные Рандозия и Легенда Сумерек)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция: Судьи -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h2 class="section-title">Судебная система СН</h2>
+            </div>
+            
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">V</div>
+                        <div>
+                            <h3 class="member-name">Vebbersik (Vmarty21)</h3>
+                            <span class="member-role">Судья СН</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Главный судья сообщества, ответственный за правоприменение и разрешение споров внутри СН.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличился:</div>
+                            <ul class="achievement-list">
+                                <li>Бывший администратор сервера СЖЗС (2024)</li>
+                                <li>Эксперт в правовых вопросах сообщества</li>
+                                <li>Руководство Стражей СН</li>
+                                <li>Участие в оперативном составе</li>
+                                <li>Активный участник с момента вступления</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">С</div>
+                        <div>
+                            <h3 class="member-name">Tloufaan (Сурли / Чертила)</h3>
+                            <span class="member-role">Апелляционный судья</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Апелляционный судья, проверяющий решения основного суда. Бывший оперативник и парламентер.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличилась:</div>
+                            <ul class="achievement-list">
+                                <li>Бывший оперативник и парламентер СЖЗС</li>
+                                <li>Подруга Остри, активная участница</li>
+                                <li>Временный уход и возвращение в сообщество</li>
+                                <li>Контроль за соблюдением процедур</li>
+                                <li>Подготовка к экзаменам и успешное возвращение</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция: Известные и активные участники -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h2 class="section-title">Известные и активные участники СН</h2>
+            </div>
+            
+            <div class="members-grid">
+                <!-- Остри -->
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">О</div>
+                        <div>
+                            <h3 class="member-name">Ostri7533</h3>
+                            <span class="member-role">Инструктор, парламентер</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Бывший токсик, ставший важнейшим участником СЖЗС после перемирия. Инструктор, парламентер, гвардеец.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличилась:</div>
+                            <ul class="achievement-list">
+                                <li>Инструктор оперативного состава</li>
+                                <li>Бывший парламентер СЖЗС</li>
+                                <li>Легендарная фраза "Снимай трусы"</li>
+                                <li>Участие в Пятой операции</li>
+                                <li>Превращение из врага в союзника</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- YellowCat -->
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">YC</div>
+                        <div>
+                            <h3 class="member-name">YellowCat2012</h3>
+                            <span class="member-role">Ветеран, глава Битвы Танков</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Единственный участник, бывший в СЖЗС с момента основания до преобразования в СН.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличился:</div>
+                            <ul class="achievement-list">
+                                <li>Старейший друг и союзник Николая</li>
+                                <li>Глава сообщества "Битва Танков"</li>
+                                <li>Находился в СЖЗС с самого основания</li>
+                                <li>Пережил все трансформации сообщества</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Арина Коток -->
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">АК</div>
+                        <div>
+                            <h3 class="member-name">Arina_Kotok</h3>
+                            <span class="member-role">Ближайшее окружение</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Участница с братом, вошедшая в ближайшее окружение Николая, минуя основную иерархию.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличилась:</div>
+                            <ul class="achievement-list">
+                                <li>Вошла в ближайшее окружение Николая</li>
+                                <li>Самый младший участник (с братом)</li>
+                                <li>Быстрое продвижение по доверию</li>
+                                <li>Активное участие в жизни сообщества</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Иван Лопатка -->
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">ИЛ</div>
+                        <div>
+                            <h3 class="member-name">Иван Лопатка</h3>
+                            <span class="member-role">Поэт и моральная поддержка</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Активный участник, поддерживавший Жеку. Писал стихи в прозе, бывший недруг, ставший лояльным участником.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличился:</div>
+                            <ul class="achievement-list">
+                                <li>Моральная поддержка Николая</li>
+                                <li>Творчество (стихи в прозе)</li>
+                                <li>Превращение из недруга в лояльного участника</li>
+                                <li>Активное участие с начала 2024</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Павел -->
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">ПК</div>
+                        <div>
+                            <h3 class="member-name">Павел Ковалев</h3>
+                            <span class="member-role">Одногруппник, техническая помощь</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Одногруппник Николая в колледже, помогавший с техническими вопросами и ликвидацией фейков.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличился:</div>
+                            <ul class="achievement-list">
+                                <li>Помощь в ликвидации фейковых аккаунтов</li>
+                                <li>Техническая поддержка Николая</li>
+                                <li>Участие как одногруппник</li>
+                                <li>Практическая помощь в защите</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gervatii -->
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">ГР</div>
+                        <div>
+                            <h3 class="member-name">Gervatii (Руслан)</h3>
+                            <span class="member-role">Программист-хакер</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Программист-хакер, создатель мощных автоматических систем жалоб (ARS) для СЖЗС.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличился:</div>
+                            <ul class="achievement-list">
+                                <li>Создание мощных ARS систем</li>
+                                <li>Программистские навыки хакера</li>
+                                <li>Вступление в 2024-2025 годах</li>
+                                <li>Технический вклад в операции</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mega_Micro -->
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">MM</div>
+                        <div>
+                            <h3 class="member-name">Mega_Micro</h3>
+                            <span class="member-role">Дипломат и мемодел</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Остроумный дипломат, создатель мемов, имеющий свой YouTube-канал. Вступил в СЖЗС в 2022.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличился:</div>
+                            <ul class="achievement-list">
+                                <li>Дипломатия и спор с оппонентами</li>
+                                <li>Создание мемов для сообщества</li>
+                                <li>Свой YouTube-канал</li>
+                                <li>Создание музыки в стиле техно</li>
+                                <li>Участие с 2022 года</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Prol!gatv -->
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">ПР</div>
+                        <div>
+                            <h3 class="member-name">Prol!gatv</h3>
+                            <span class="member-role">Программист, парламентер</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Программист, быстро ставший союзником Николая и повышенный до парламента. Активный участник СН.
+                        </p>
+                        <div class="member-achievements">
+                            <div class="achievement-title">Отличился:</div>
+                            <ul class="achievement-list">
+                                <li>Быстрый рост до парламента</li>
+                                <li>Программистские навыки</li>
+                                <li>Статус союзника Николая</li>
+                                <li>Участие в развитии сообщества</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция: Стражи СН -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2 class="section-title">Стражи СН</h2>
+                <p style="margin-left: auto; font-size: 0.9rem; color: rgba(255,255,255,0.7);">
+                    Всего: 7 участников
+                </p>
+            </div>
+            
+            <div class="guards-list">
+                <div class="guard-item">
+                    <i class="fas fa-user-shield guard-icon"></i>
+                    <span class="guard-name">luch_sveta_v_neproglyadnoy_tyme (Егор)</span>
+                </div>
+                <div class="guard-item">
+                    <i class="fas fa-user-shield guard-icon"></i>
+                    <span class="guard-name">whistl353</span>
+                </div>
+                <div class="guard-item">
+                    <i class="fas fa-user-shield guard-icon"></i>
+                    <span class="guard-name">Pacmanvova</span>
+                </div>
+                <div class="guard-item">
+                    <i class="fas fa-user-shield guard-icon"></i>
+                    <span class="guard-name">MGV_YT</span>
+                </div>
+                <div class="guard-item">
+                    <i class="fas fa-user-shield guard-icon"></i>
+                    <span class="guard-name">[Должность вакантна]</span>
+                </div>
+                <div class="guard-item">
+                    <i class="fas fa-user-shield guard-icon"></i>
+                    <span class="guard-name">[Должность вакантна]</span>
+                </div>
+                <div class="guard-item">
+                    <i class="fas fa-user-shield guard-icon"></i>
+                    <span class="guard-name">[Должность вакантна]</span>
+                </div>
+            </div>
+            
+            <div style="margin-top: 1.5rem; background: rgba(30, 125, 78, 0.1); padding: 1rem; border-radius: 8px;">
+                <h4 style="color: var(--light-gold); margin-bottom: 0.5rem;">О Страже СН:</h4>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem;">
+                    Стража СН — полу-оперативное формирование из специально обученных добровольцев. 
+                    Расследует инциденты, обеспечивает безопасность участников и выполняет решения суда. 
+                    Подчиняется непосредственно Судье Vmarty21 и Апелляционному судье Сурли.
+                </p>
+            </div>
+        </section>
+
+        <!-- Секция: Другие активные участники -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <h2 class="section-title">Другие активные участники</h2>
+            </div>
+            
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">КТ</div>
+                        <div>
+                            <h3 class="member-name">Katerina</h3>
+                            <span class="member-role">Администратор name: null</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Администратор сервера name: null, вступившая в группу СН в Telegram 29.08.25.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">РФ</div>
+                        <div>
+                            <h3 class="member-name">RayTheFox</h3>
+                            <span class="member-role">Старая знакомая, основатель сервера</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Старая знакомая Николая, ранее конфликтовала с ним, позже помирились и стала участницей СН.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">Н</div>
+                        <div>
+                            <h3 class="member-name">hitomihiumi</h3>
+                            <span class="member-role">Глава name: null</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <p class="member-description">
+                            Глава сервера name: null, официально внесен в список участников СН по решению Николая.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Футер -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-users"></i>
+            </div>
+            <p class="footer-text">Сообщество Николая — мирное, творческое сообщество, основанное на принципах гуманизма, взаимного уважения и коллективного развития.</p>
+            
+            <div class="copyright">
+                <p>© <span id="currentYear">2025</span> Сообщество Николая (СН). Все права на информацию об участниках защищены.</p>
+                <p>Информация актуальна на сентябрь 2025 года.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Устанавливаем текущий год в футере
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Автоматическое выделение активной страницы в навигации
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navButtons = document.querySelectorAll('.nav-btn');
+            
+            navButtons.forEach(button => {
+                const href = button.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

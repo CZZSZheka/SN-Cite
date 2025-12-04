@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юридический портал СН - Основы, права и структуры</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Roboto:wght@300;400;500&display=swap">
+    <style>
+        :root {
+            --primary-green: #0a5c36;
+            --dark-green: #08482b;
+            --light-green: #1e7d4e;
+            --gold: #d4af37;
+            --light-gold: #f4d03f;
+            --white: #ffffff;
+            --light-gray: rgba(255, 255, 255, 0.85);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            --card-bg: rgba(0, 0, 0, 0.25);
+            --section-bg: rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-green);
+            color: var(--white);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Шапка */
+        .legal-header {
+            background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='shield' patternUnits='userSpaceOnUse' width='120' height='120'%3E%3Cpath d='M60,10 L110,35 L110,85 L60,110 L10,85 L10,35 Z' fill='none' stroke='%23ffffff' stroke-width='2' stroke-opacity='0.15'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23shield)'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .legal-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .legal-logo-icon {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-family: 'Philosopher', serif;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.8px;
+        }
+
+        .legal-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Основной контент */
+        .legal-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Навигация по разделам */
+        .legal-nav {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .nav-title {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-family: 'Philosopher', serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Разделы */
+        .legal-section {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--gold);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        h2 {
+            color: var(--gold);
+            font-size: 2.2rem;
+            font-family: 'Philosopher', serif;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        h3 {
+            color: #a8e6a3;
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.5rem;
+            font-family: 'Philosopher', serif;
+        }
+
+        h4 {
+            color: var(--light-gold);
+            margin: 1.2rem 0 0.6rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background-color: rgba(212, 175, 55, 0.15);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .definition-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .definition-card {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .term {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .term-definition {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Футер */
+        .legal-footer {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 2rem;
+            text-align: center;
+            border-top: 2px solid var(--gold);
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            opacity: 0.85;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            opacity: 0.7;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1.2rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .legal-subtitle {
+                font-size: 1rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .legal-section {
+                padding: 1.5rem;
+            }
+            
+            .definition-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+            }
+            
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .legal-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="legal-header">
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <div class="legal-logo">
+                <div class="legal-logo-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h1>Юридический портал СН</h1>
+            </div>
+            <p class="legal-subtitle">Официальная документация Сообщества Николая: основы, права, обязанности и структуры сообщества</p>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Вернуться на главный портал</a>
+        </div>
+    </header>
+
+<!-- Навигационная панель для uri.html -->
+<nav class="site-navigation">
+    <div class="nav-container">
+        <a href="index.html" class="nav-btn">
+            <i class="fas fa-home"></i> Главная
+        </a>
+        <a href="uri.html" class="nav-btn active">
+            <i class="fas fa-balance-scale"></i> Юридический портал
+        </a>
+        <a href="legal.html" class="nav-btn">
+            <i class="fas fa-address-book"></i> Законодательная информация
+        </a>
+        <a href="chat.html" class="nav-btn">
+            <i class="fas fa-comments"></i> Чат сообщества
+        </a>
+        <a href="members.html" class="nav-btn">
+            <i class="fas fa-users"></i> Участники
+        </a>
+        <a href="projects.html" class="nav-btn">
+            <i class="fas fa-project-diagram"></i> Проекты
+        </a>
+        <a href="contacts.html" class="nav-btn">
+            <i class="fas fa-address-book"></i> Контакты
+        </a>
+    </div>
+</nav>
+
+<style>
+    /* Стили для навигационной панели */
+    .site-navigation {
+        background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+        padding: 0.8rem 1rem;
+        border-bottom: 2px solid var(--gold);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+    }
+    
+    .nav-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .nav-btn {
+        color: var(--white);
+        text-decoration: none;
+        padding: 0.7rem 1.5rem;
+        border-radius: 50px;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.95rem;
+        white-space: nowrap;
+    }
+    
+    .nav-btn:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .nav-btn.active {
+        background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
+        color: var(--dark-green);
+        border-color: var(--gold);
+    }
+    
+    .nav-btn i {
+        font-size: 1.1rem;
+    }
+    
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .nav-container {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .nav-btn {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .site-navigation {
+            padding: 0.6rem;
+        }
+        
+        .nav-btn {
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+    <!-- Основной контент -->
+    <div class="legal-container">
+        <!-- Навигация по разделам -->
+        <nav class="legal-nav">
+            <h3 class="nav-title"><i class="fas fa-book"></i> Навигация по разделам</h3>
+            <div class="nav-links">
+                <a href="#basics" class="nav-link"><i class="fas fa-landmark"></i> Основы СН</a>
+                <a href="#rights" class="nav-link"><i class="fas fa-scale-balanced"></i> Права участников</a>
+                <a href="#responsibilities" class="nav-link"><i class="fas fa-tasks"></i> Обязанности</a>
+                <a href="#structures" class="nav-link"><i class="fas fa-sitemap"></i> Структуры СН</a>
+                <a href="#procedures" class="nav-link"><i class="fas fa-gavel"></i> Процедуры</a>
+                <a href="#terms" class="nav-link"><i class="fas fa-book-open"></i> Терминология</a>
+            </div>
+        </nav>
+
+        <!-- Раздел: Основы СН -->
+        <section id="basics" class="legal-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h2>Основы Сообщества Николая</h2>
+            </div>
+            
+            <p>Сообщество Николая (СН) — мирное, творческое сообщество, сформированное долгой историей с 2020 года. Текущая суть сообщества основывается на принципах безопасности, единства, коллективного решения и равенства.</p>
+            
+            <div class="highlight-box">
+                <h3>Ключевые принципы СН</h3>
+                <ul>
+                    <li><strong>Коллегиальность:</strong> Все участники равны в правах, решения принимаются коллективно.</li>
+                    <li><strong>Творческая свобода:</strong> Поддержка и поощрение творческой самореализации.</li>
+                    <li><strong>Безопасность и защита:</strong> Гарантия безопасности для каждого участника.</li>
+                    <li><strong>Единство в разнообразии:</strong> Уважение к индивидуальности при сохранении сплоченности.</li>
+                    <li><strong>Гуманность:</strong> Уважение к каждому человеку, поддержка и взаимопомощь.</li>
+                    <li><strong>Миротворчество:</strong> Активная работа по разрешению конфликтов.</li>
+                    <li><strong>Справедливость:</strong> Равные права и возможности для каждого.</li>
+                </ul>
+            </div>
+            
+            <p>СН было сформировано на основе многолетнего опыта СЖЗС и представляет собой эволюцию от защиты к созиданию. Это коллегиальное сообщество с уважением к личности, но сплоченное и единое.</p>
+        </section>
+
+        <!-- Раздел: Права участников -->
+        <section id="rights" class="legal-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-scale-balanced"></i>
+                </div>
+                <h2>Права участников СН</h2>
+            </div>
+            
+            <p>Каждый участник СН обладает следующими правами:</p>
+            
+            <ul>
+                <li><strong>Участие в управлении:</strong> Создавать и участвовать в голосованиях, участвовать в управлении сообществом.</li>
+                <li><strong>Свобода самовыражения:</strong> Рассказывать о своей жизни, исключив все конфиденциальные подробности.</li>
+                <li><strong>Право на поддержку:</strong> Требовать поддержки, помощи или совета от сообщества.</li>
+                <li><strong>Доступ к специалистам:</strong> Обращаться к определенным категориям специалистов: программистам, художникам, писателям, бывшим оперативникам и другим.</li>
+                <li><strong>Неприкосновенность частной жизни:</strong> Иметь право на неприкосновенность частной и личной жизни, отдельных от СН друзей и знакомых.</li>
+                <li><strong>Свобода мнения:</strong> Право на личное мнение, веру, свободу и конструктивную критику.</li>
+                <li><strong>Право обращения:</strong> Направлять предложения, обращения к коллективу сообщества и/или лично к Николаю.</li>
+                <li><strong>Творческая самореализация:</strong> Право на творческую самореализацию в рамках правил сообщества.</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <h4>Примечание:</h4>
+                <p>Участник СН не может состоять в деструктивных, опасных и враждебных группировках, объединившихся для совершения преступлений или травли. Нарушение этого правила ведет к автоматической блокировке.</p>
+            </div>
+        </section>
+
+        <!-- Раздел: Обязанности -->
+        <section id="responsibilities" class="legal-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h2>Обязанности и ответственность участников</h2>
+            </div>
+            
+            <p>Участники СН обязаны соблюдать следующие правила и нормы:</p>
+            
+            <h3>Основные обязанности</h3>
+            <ul>
+                <li>Соблюдать законодательство своей страны и правила интернет-площадок.</li>
+                <li>Не участвовать в деструктивных, опасных кругах, представляющих угрозу для самого участника, его семьи, друзей и сообщества СН.</li>
+                <li>Уважительно относиться к другим, соблюдать адекватное, мирное поведение, следить за своей речью.</li>
+                <li>Поддерживать дружескую, мирную и ламповую атмосферу СН.</li>
+                <li>Проверять критически все неформальные и официальные заявления и высказывания.</li>
+                <li>Не навязывать участникам своё личное мнение и не разжигать конфликтов на основе различий.</li>
+            </ul>
+            
+            <h3>Ограничения по контенту</h3>
+            <ul>
+                <li>Запрещено обсуждать 18+ контент, особенно порнографический.</li>
+                <li>Эротический контент разрешён, но участник не имеет права публиковать и обсуждать его в присутствии детей и иных уязвимых участников сообщества.</li>
+                <li>Запрещена публикация любого шок-контента.</li>
+                <li>Запрещена пропаганда суицида, насилия, геноцида, разжигание межнационального конфликта.</li>
+                <li>Запрещена публикация вредоносного ПО.</li>
+            </ul>
+        </section>
+
+        <!-- Раздел: Структуры СН -->
+        <section id="structures" class="legal-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+                <h2>Структуры и должности в СН</h2>
+            </div>
+            
+            <h3>Основатель и высшее руководство</h3>
+            <p><strong>Николай (NikolayG)</strong> — основатель сообщества. Дополнительные права:</p>
+            <ul>
+                <li>Вносить поправки в документы</li>
+                <li>Назначать администраторов и должности</li>
+            </ul>
+            
+            <h3>Суд и правосудие</h3>
+            <p>Судья СН — <strong>Vmarty21</strong>, имеет титул "Гадмин". Апелляционный судья СН — <strong>Surly-Cat</strong>.</p>
+            <p>Суд в терминологии СН — это событие по выяснению обстоятельств конфликта. Часто добавляются в один чат обе стороны, и представитель оперсостава/парламента (нередко и сам Николай) должны были решить, что делать. Также это мог быть ультиматум для определенных врагов, которым давали шанс загладить вину.</p>
+            
+            <h3>Стража СН</h3>
+            <p>Стража СН — это полу-оперативное, малочисленное формирование, сформированное из специально обученных добровольцев. Стража не принадлежит к оперативному составу, но в случаях предусмотренных ситуаций может поддерживать Оперсостав и выполнять вспомогательную функцию.</p>
+            
+            <div class="highlight-box">
+                <h4>Полномочия Стражи:</h4>
+                <ul>
+                    <li>Расследовать инциденты, связанные с нарушениями правил платформ, законодательства СН.</li>
+                    <li>Составлять записи о инцидентах, нарушениях, скандалах и конфликтах.</li>
+                    <li>Отправлять судье СН информацию для принятия решений.</li>
+                    <li>На основе решения судьи — прекращать действия или отправлять официально оформленные жалобы модераторам платформ.</li>
+                    <li>Рассматривать жалобы, обращения и давать консультации по вопросам, связанным с законными правами.</li>
+                    <li>Иметь права модераторов в пределах инфраструктуры СН.</li>
+                </ul>
+                
+                <h4>Штат Стражи:</h4>
+                <ul>
+                    <li>Один участник, знакомый с правом или его основами.</li>
+                    <li>Один участник, имеющий опыт в работе с людьми.</li>
+                    <li>Один аналитик, способный к грамотному составлению документов.</li>
+                    <li>Минимум трое исполнителей, выносящих предупреждения, собирающие информацию или отвечающие на запросы.</li>
+                </ul>
+                <p>Стража имеет строгое ограничение участников в 7 человек.</p>
+            </div>
+            
+            <h3>Инструкторы</h3>
+            <p>Инструктор — участник оперативного состава, который был опытным и был ответственным за моральную и техническую подготовку оперативного состава. Они имели больше свободы, но обычно подчинялись напрямую Николаю.</p>
+            <p>Самый известный инструктор: <strong>Ostri7533</strong>, которая известна тем, что пародировала военкомат, говоря фразу "Снимай трусы". Имеет личный титул/ранг: "главный инструктор/гвардеец/Адя".</p>
+            
+            <h3>Оперативный состав (Оперсостав)</h3>
+            <p>Оперативный состав — сервер или группа, в которой были сосредоточены: Оперативники, компроматы, инструкции по действиям, цели, размещались приказы и распоряжения. Актуально до 2025 года. Имел сложную структуру и делился на различные отделы.</p>
+            <p>Оперативник (опер, воин, солдат) — участник, занимающийся деятельностью по защите СЖЗС и исполнением приказов. Часто данный участник владел самодельной ARS (массрепортером). Им было запрещено оскорблять врагов.</p>
+            
+            <h3>Парламент</h3>
+            <p>Парламент — группа участников СЖЗС, которые были ближе всего к Николаю и с ним решали вопросы. Включал наиболее доверенных и опытных членов сообщества.</p>
+        </section>
+
+        <!-- Раздел: Процедуры -->
+        <section id="procedures" class="legal-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h2>Процедуры и процессы СН</h2>
+            </div>
+            
+            <h3>Голосование</h3>
+            <p>Голосованием является любой опрос — словесный или интерактивный. При помощи голосования можно:</p>
+            <ul>
+                <li>Принимать новые законы и вносить поправки</li>
+                <li>Выносить окончательные решения и постановления</li>
+                <li>Опрашивать участников по мнению</li>
+                <li>Собирать статистические данные</li>
+            </ul>
+            <p>Голосования могут быть как анонимными, так и открытыми, в зависимости от назначения.</p>
+            
+            <h3>Вето</h3>
+            <p>На решение или голосование может быть наложено Вето. Эта процедура включает в себя либо коллективное направление сообщений о наложении вето, либо ответное интерактивное голосование "Наложить вето".</p>
+            <p>Для вступления Вето в силу, нужно голосование минимум четверти членов сообщества, либо коллективное неодобрение администрации. Вето можно оспорить, но конструктивно.</p>
+            
+            <h3>Частный порядок отношений (ЧПО)</h3>
+            <p>Если участник СН обратился к специалисту из СН, и он оказал ему услугу, то их отношения перетекают в частный порядок.</p>
+            <p>Частный порядок отношений означает, что специалист из СН сам должен регулировать отношения с клиентом и имеет право требовать оплату услуг, либо услугу за услугу, либо оказать её бесплатно по своему усмотрению. СН не имеет права вмешиваться в частные отношения между специалистом и клиентом.</p>
+            <p>Для вмешательства участников СН клиент и специалист должны добровольно, по обоюдному согласию, запросить голосование, если не могут решить сделку сами. В этом случае СН выступает арбитром в сделке и выносит решение.</p>
+            
+            <h3>Оперативная деятельность</h3>
+            <p>Оперативная деятельность — любая скоординированная деятельность участников Сообщества, направленная на активное противодействие внешним объектам с использованием специальных методов.</p>
+            <p>Для начала оперативной деятельности необходимо:</p>
+            <ol>
+                <li>Наличие непосредственной угрозы для жизни, здоровья, репутации или цифровой безопасности членов СН, лоялистов, официальных партнёров.</li>
+                <li>Санкция высшего органа — решение, вынесенное на открытое голосование среди активных участников Сообщества, с одобрением не менее 75% голосов.</li>
+            </ol>
+        </section>
+
+        <!-- Раздел: Терминология -->
+        <section id="terms" class="legal-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h2>Терминология и жаргонизмы СН</h2>
+            </div>
+            
+            <p>В сообществе СН используется специфическая терминология, сформированная за годы его существования:</p>
+            
+            <div class="definition-list">
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-bullhorn"></i> Массрепорт</div>
+                    <p class="term-definition">Массовые жалобы, которые призваны заблокировать противника количеством жалоб на основании его открытого нарушения.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-robot"></i> Массрепортер (ARS)</div>
+                    <p class="term-definition">Программа, осуществлявшая автоматические массовые жалобы, используя аккаунты, зарегистрированные в отдельном файле.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-user-shield"></i> Оперативник</div>
+                    <p class="term-definition">Участник, занимающийся деятельностью по защите СЖЗС и исполнением приказов. Также: опер, воин, солдат.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-skull-crossbones"></i> Токсик</div>
+                    <p class="term-definition">Враждебно настроенный человек, который занимался троллингом, психологическим насилием, преследованием жертв. Также: Токс, Террорист, Враг, Демон.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-users"></i> Лоялист</div>
+                    <p class="term-definition">Участник Scratch, поддерживающий СН, но не являющийся его участником. Обозначает исключительно участников Scratch.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-ghost"></i> Энтур</div>
+                    <p class="term-definition">Оперативник-новичок.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-folder-open"></i> Архив</div>
+                    <p class="term-definition">Систематизированное собрание данных, материалов и информации, имеющее стратегическое значение для СН.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-gavel"></i> Суд / Разборка</div>
+                    <p class="term-definition">Событие по выяснению обстоятельств конфликта. Часто добавляются в один чат обе стороны, и представитель оперсостава/парламента должен решить, что делать.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-user-tie"></i> Гадмин</div>
+                    <p class="term-definition">Ранг, являющийся сокращением от "Главный администратор" на Discord-сервере СЖЗС. Использовался в ироничном контексте.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-user-ninja"></i> Залечь на дно</div>
+                    <p class="term-definition">Исчезнуть из публичных соцсетей, платформ и мессенджеров, сохранив связь с центром СЖЗС/СН, координировать действия тайно.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-crown"></i> Под Лавром / Лавровый</div>
+                    <p class="term-definition">Популярный, известный, прославившийся, получивший статус и признание в СН/СЖЗС.</p>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="term"><i class="fas fa-user-graduate"></i> Благородный</div>
+                    <p class="term-definition">Адекватный, имеющий достоинство человек, который не гнушается ни высоких вещей, ни черной работы.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Футер -->
+    <footer class="legal-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-balance-scale"></i>
+            </div>
+            <p class="footer-text">Юридический портал Сообщества Николая — официальная документация, регулирующая права, обязанности и структуры сообщества. Все положения являются обязательными для всех участников СН.</p>
+            
+            <div class="copyright">
+                <p>© <span id="currentYear">2025</span> Сообщество Николая (СН). Все права на юридические документы защищены.</p>
+                <p>Документ составлен на основе официальных документов СН от 2025 года.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Устанавливаем текущий год в футере
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Плавная прокрутка к разделам
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!-- navigation.html -->
+<nav class="site-navigation">
+    <div class="nav-container">
+        <a href="index.html" class="nav-btn" id="nav-home">
+            <i class="fas fa-home"></i> Главная
+        </a>
+        <a href="legal.html" class="nav-btn" id="nav-legal">
+            <i class="fas fa-balance-scale"></i> Юридический портал
+        </a>
+        <a href="chat.html" class="nav-btn" id="nav-chat">
+            <i class="fas fa-comments"></i> Чат сообщества
+        </a>
+        <a href="members.html" class="nav-btn" id="nav-members">
+            <i class="fas fa-users"></i> Участники
+        </a>
+        <a href="projects.html" class="nav-btn" id="nav-projects">
+            <i class="fas fa-project-diagram"></i> Проекты
+        </a>
+        <a href="rules.html" class="nav-btn" id="nav-rules">
+            <i class="fas fa-book"></i> Правила
+        </a>
+    </div>
+</nav>
+
+<script>
+    // Автоматическое выделение активной страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPage = window.location.pathname.split('/').pop();
+        const navButtons = document.querySelectorAll('.nav-btn');
+        
+        navButtons.forEach(btn => {
+            const href = btn.getAttribute('href');
+            if (href === currentPage) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    });
+</script>
