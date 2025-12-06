@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рандозия — Зов Этернала | Официальный Лор</title>
+    <meta name="description" content="Официальный лор вселенной Рандозия — Зов Этернала. Автор: Голубов Н.Ю.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg: #0b1a2b;
+            --carbon: #0f2439;
+            --accent: #00d4ff;
+            --header: #0e2a47;
+            --text: #c0e0ff;
+            --text-light: #88bfff;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--bg) url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmFpbiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIxIiBmaWxsPSIjMjA0MDYwIiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSIxNSIgY3k9IjE1IiByPSIxIiBmaWxsPSIjMjA0MDYwIiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NSIgY3k9IjQ1IiByPSIxIiBmaWxsPSIjMjA0MDYwIiBvcGFjaXR5PSIwLjMiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhaW4pIi8+PC9zdmc+') repeat;
+            color: var(--text);
+            font-family: 'Exo 2', sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--header), #112240);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,212,255,0.15);
+            border-bottom: 2px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(0,212,255,0.08), transparent);
+            animation: shimmer 8s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #00d4ff, #88f4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0,212,255,0.5);
+            letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+            color: var(--text-light);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .container {
+            background: rgba(15,36,57,0.6);
+            border: 1px solid rgba(0,212,255,0.2);
+            border-radius: 16px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .about {
+            font-size: 1.3rem;
+            text-align: justify;
+            background: linear-gradient(to right, var(--text), #88bfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .author {
+            margin-top: 3rem;
+            font-size: 1.1rem;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        .glow {
+            animation: glow 4s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(0,212,255,0.5); }
+            to { text-shadow: 0 0 30px rgba(0,212,255,0.8); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            .container { padding: 2rem; }
+        }
+		.back-button {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    background: rgba(10, 15, 40, 0.85);
+    color: #c0d8ff;
+    font-family: 'Uncial Antiqua', cursive;
+    font-size: 1.4rem;
+    text-decoration: none;
+    border: 2px solid rgba(136, 170, 255, 0.5);
+    border-radius: 50px;
+    box-shadow: 0 0 30px rgba(136, 170, 255, 0.4);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    transition: all 0.4s ease;
+    letter-spacing: 0.1em;
+}
+
+.back-button:hover {
+    background: rgba(20, 30, 80, 0.95);
+    border-color: #88aaff;
+    box-shadow: 0 0 50px rgba(136, 170, 255, 0.8);
+    transform: translateY(-4px);
+    color: #e0e8ff;
+}
+
+.back-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 10px #4488ff);
+}
+
+.back-text {
+    text-shadow: 0 0 15px #2244aa;
+}
+    </style>
+</head>
+<body>
+
+<a href="golubov_creative.html" class="back-button">
+    <span class="back-icon">⟸</span>
+    <span class="back-text">Назад</span>
+</a>
+    <header>
+        <h1 class="glow">РАНДОЗИЯ</h1>
+        <p class="subtitle">Зов Этернала — Официальный Лор</p>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom:2rem; color:var(--accent); font-family:'Orbitron';">О произведении</h2>
+			<img src="randosia-cover.jpg"
+            width="480" 
+     height="auto" 
+     style="max-width:100%; height:auto; border-radius:12px; box-shadow:0 0 30px rgba(0,212,255,0.4);">
+            <p class="about">
+                «Рандозия — Зов Этернала» — это масштабная фэнтезийно-космическая сага о борьбе света и тьмы, о любви отца к своим детям и искуплении падших. 
+                История охватывает тысячи лет: от сотворения мира Лордом Этерналом и предательства Валрадина до финальной битвы с Шиль’Таном и восстановления мира на планете Рандозия и за её пределами.<br><br>
+                В центре повествования — пять великих рас Сириуса (Каны, Кальты, Масанцы, Раад и Имларийцы), объединённые верой в Этернала, их героические сражения с демонами, гражданские конфликты, технологический прогресс и, главное, — путь к прощению и единству.<br><br>
+                Это история о том, что даже падший ангел может вернуться к свету, а любовь Отца способна исцелить любые раны.
+            </p>
+
+            <div class="author">
+                <p>Автор лора и вселенной: <strong>Голубов Николай Юрьевич</strong></p>
+                <p>© Все права защищены. Любое копирование запрещено.</p>
+                <p>Контакт для сотрудничества: <a href="mailto:czzsmodern@gmail.com" style="color:var(--accent);">czzsmodern@gmail.com</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Рандозия — Зов Этернала © 2020–2025 | Создано с любовью к детальному лору</p>
+    </footer>
+</body>
+</html>

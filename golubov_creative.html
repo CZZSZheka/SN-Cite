@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вселенные Николая Ю. Голубова</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-gold: #b8941f;
+            --dark-green: #08482b;
+            --white: #ffffff;
+            --shadow: 0 6px 25px rgba(0,0,0,0.5);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: linear-gradient(135deg, #051f14, #0a5c36);
+            color: var(--white);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            padding: 3rem 1rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='s' patternUnits='userSpaceOnUse' width='120' height='120'%3E%3Cpath d='M60,10 L110,35 L110,85 L60,110 L10,85 L10,35 Z' fill='none' stroke='%23ffffff' stroke-width='2' stroke-opacity='0.15'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23s)'/%3E%3C/svg%3E");
+            opacity: 0.2;
+        }
+
+        h1 {
+            font-family: 'Philosopher', serif;
+            font-size: 3.5rem;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            margin-top: 0.8rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        main {
+            max-width: 1300px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            display: grid;
+            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        }
+
+        .universe-card {
+            background: rgba(0,0,0,0.4);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border-left: 6px solid var(--gold);
+            transition: transform 0.4s ease;
+        }
+
+        .universe-card:hover { transform: translateY(-12px); }
+
+        .card-header {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .universe-card:hover .cover-image { transform: scale(1.1); }
+
+        .header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .icon-top {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px black;
+        }
+
+        .header-overlay h2 {
+            font-family: 'Philosopher', serif;
+            font-size: 2.4rem;
+            margin: 0;
+            text-shadow: 0 3px 12px rgba(0,0,0,0.9);
+        }
+
+        .card-body {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .card-body p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: #0a3d20;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .read-more:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            background: rgba(0,0,0,0.5);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.6rem; }
+            .header-overlay h2 { font-size: 2rem; }
+            main { grid-template-columns: 1fr; }
+        }
+		.home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, var(--gold), #b8941f);
+    color: #0a3d20;
+    font-weight: bold;
+    font-size: 1.05rem;
+    padding: 12px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.home-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    background: linear-gradient(135deg, var(--light-gold), var(--gold));
+}
+
+.home-button i {
+    font-size: 1.3rem;
+}
+    </style>
+</head>
+
+<!-- КНОПКА «НА ГЛАВНУЮ» — вставляй куда хочешь -->
+<a href="index.html" class="home-button">
+    <i class="fas fa-home"></i> На главную
+</a>
+
+<body>
+
+<header>
+    <h1>Вселенные Николая Ю. Голубова</h1>
+    <p class="subtitle">Рандозия · Легенда Сумерек · Единый Мир</p>
+</header>
+
+<main>
+    <!-- ==================== РАНДОЗИЯ ==================== -->
+    <section class="universe-card">
+        <div class="card-header">
+            <!-- ←←← СЮДА КЛАДИ СВОЮ КАРТИНКУ ДЛЯ РАНДОЗИИ -->
+            <img src="randosia-cover.jpg" alt="Рандозия" class="cover-image">
+            <div class="header-overlay">
+                <i class="fas fa-sword-alt icon-top"></i>
+                <h2>Рандозия — Зов Этернала</h2>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>Эпическая космоопера с пятью светлыми расами, лордом Этерналом, Канией, Раад и великой войной против демонов и Шиль’Тана.</p>
+            <a href="https://author.today/work/513959" class="read-more" target="_blank">Читать на Author.Today</a>
+            <a href="randosia.html" class="read-more" target="_blank">Сайт</a>
+        </div>
+    </section>
+
+    <!-- ==================== ЛЕГЕНДА СУМЕРЕК ==================== -->
+    <section class="universe-card">
+        <div class="card-header">
+            <!-- ←←← СЮДА КЛАДИ СВОЮ КАРТИНКУ ДЛЯ ЛЕГЕНДЫ СУМЕРЕК -->
+            <img src="summit-cover.jpg" alt="Легенда Сумерек" class="cover-image">
+            <div class="header-overlay">
+                <i class="fas fa-moon icon-top"></i>
+                <h2>Легенда Сумерек — Спиритлин</h2>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>Тёмное эпическое фэнтези о Хейртен, падшем Сюрезене, Алрисе Спиритлине и Ледяном королевстве Сильфрины.</p>
+            <a href="https://author.today/work/513959" class="read-more" target="_blank">Читать на Author.Today</a>
+			<a href="legendoftwilight.html" class="read-more" target="_blank">Сайт</a>
+        </div>
+    </section>
+
+    <!-- ==================== ЕДИНЫЙ МИР ==================== -->
+    <section class="universe-card">
+        <div class="card-header">
+            <!-- ←←← СЮДА КЛАДИ СВОЮ КАРТИНКУ ДЛЯ ФИНАЛА -->
+            <img src="united-cover.jpg" alt="Восхождение единого мира" class="cover-image">
+            <div class="header-overlay">
+                <i class="fas fa-infinity icon-top"></i>
+                <h2>Единый Мир — Восхождение</h2>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>Финал саги: миры Рандозии и Легенды Сумерек сливаются, спасение Сюрезена и уничтожение Шиль’Тана.</p>
+            <a href="https://author.today/work/513959" class="read-more" target="_blank">Читать финал на Author.Today</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© Николай Ю. Голубов. Все права защищены.<br>
+    <a href="https://author.today/u/czzsmodern/works" style="color:var(--gold);" target="_blank">author.today/u/czzsmodern</a> · czzsmodern@gmail.com</p>
+</footer>
+
+</body>
+</html>

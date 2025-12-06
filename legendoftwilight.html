@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Легенда Сумерек | Алрис Спиритлин</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:wght@300;400;600&family=Uncial+Antiqua&display=swap');
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            /* ← ВОТ ТВОЙ НОВЫЙ ФОН НА ВЕСЬ ЭКРАН */
+            background: #000 url('legendoftwilight.jpg') center center fixed no-repeat;
+            background-size: cover;
+            color: #e0e0e0;
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Лёгкая вуаль, чтобы текст и галерея читались на любом фоне */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, 
+                transparent 20%, 
+                rgba(0,0,20,0.45) 60%, 
+                rgba(0,0,30,0.85) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            z-index: 2;
+        }
+
+        .title-main {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 8rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #a0c0ff, #e8f0ff, #88a8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 60px rgba(136,170,255,0.9);
+            animation: glow 5s ease-in-out infinite alternate;
+        }
+
+        .subtitle {
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 3.5rem;
+            color: #c0d0ff;
+            letter-spacing: 0.15em;
+            margin: 20px 0 50px;
+        }
+
+        .description {
+            max-width: 1000px;
+            font-size: 1.5rem;
+            background: rgba(10,15,40,0.82);
+            padding: 50px 70px;
+            border-radius: 25px;
+            border: 2px solid rgba(136,170,255,0.4);
+            box-shadow: 0 0 60px rgba(136,170,255,0.3);
+            backdrop-filter: blur(12px);
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 30px rgba(136,170,255,0.7); }
+            to   { text-shadow: 0 0 90px rgba(136,170,255,1); }
+        }
+
+        /* Галерея */
+        .gallery-section {
+            padding: 160px 5% 120px;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to bottom, transparent 0%, rgba(5,10,30,0.95) 30%, #0b0e17 100%);
+        }
+
+        .section-title {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 5rem;
+            text-align: center;
+            margin-bottom: 110px;
+            color: #d8e8ff;
+            text-shadow: 0 0 40px #5588ff;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 60px;
+            max-width: 1900px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9);
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-25px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.9s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.18);
+        }
+
+        .frame {
+            position: absolute;
+            inset: 0;
+            background: url('images/frame.png') center/contain no-repeat;
+            pointer-events: none;
+            opacity: 0.8;
+            transition: opacity 0.5s;
+        }
+
+        .gallery-item:hover .frame { opacity: 1; }
+
+        .caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(5,10,40,0.98));
+            padding: 60px 20px 30px;
+            text-align: center;
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 1.6rem;
+            color: #d8e8ff;
+            text-shadow: 0 0 15px #000;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.7s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 100px 20px;
+            background: rgba(5,10,30,0.97);
+            font-size: 1.3rem;
+            color: #a0b8dd;
+            letter-spacing: 1px;
+            z-index: 2;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .title-main { font-size: 4.8rem; }
+            .subtitle { font-size: 2.4rem; }
+            .description { padding: 35px 30px; font-size: 1.3rem; }
+            .section-title { font-size: 3.8rem; }
+        }
+        .back-button {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    background: rgba(10, 15, 40, 0.85);
+    color: #c0d8ff;
+    font-family: 'Uncial Antiqua', cursive;
+    font-size: 1.4rem;
+    text-decoration: none;
+    border: 2px solid rgba(136, 170, 255, 0.5);
+    border-radius: 50px;
+    box-shadow: 0 0 30px rgba(136, 170, 255, 0.4);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    transition: all 0.4s ease;
+    letter-spacing: 0.1em;
+}
+
+.back-button:hover {
+    background: rgba(20, 30, 80, 0.95);
+    border-color: #88aaff;
+    box-shadow: 0 0 50px rgba(136, 170, 255, 0.8);
+    transform: translateY(-4px);
+    color: #e0e8ff;
+}
+
+.back-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 10px #4488ff);
+}
+
+.back-text {
+    text-shadow: 0 0 15px #2244aa;
+}
+    </style>
+</head>
+<body>
+
+    <!-- КНОПКА «НАЗАД» -->
+<a href="golubov_creative.html" class="back-button">
+    <span class="back-icon">⟸</span>
+    <span class="back-text">Назад</span>
+</a>
+
+<div class="overlay"></div>
+
+<header>
+    <h1 class="title-main">Легенда Сумерек</h1>
+    <p class="subtitle">Алрис Спиритлин</p>
+    <div class="description">
+        <p>В мире Эльдариона, рождённом из белого пламени богини Хейртен и отравленном скорбью падшего Сюрезена, барьер между реальностью и бездонной Пустотой трещит по швам.</p>
+        <p>Алрис Спиритлин — сосуд возрождённой Хейртен, мститель, полубог и последний оплот света — собирает невозможный альянс, чтобы в эпической войне остановить конец мира.</p>
+        <p>Это сага о мести и прощении, о любви, что сильнее божественной ярости, о том, как обычный человек становится легендой, а богиня — смертной женщиной ради одного-единственного сердца.</p>
+    </div>
+</header>
+
+<section class="gallery-section">
+    <h2 class="section-title">Галерея Легенд</h2>
+    <div class="gallery">
+
+        <div class="gallery-item">
+            <img src="summit-cover.jpg" alt="Алрис Спиритлин">
+            <div class="frame"></div>
+            <div class="caption">Алрис Спиритлин — Сосуд Хейртен, Владыка Душ</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="lilith.png" alt="Лилит">
+            <div class="frame"></div>
+            <div class="caption">Лилит — Перерождённая Богиня</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/silfrina.jpg" alt="Сильфрина">
+            <div class="frame"></div>
+            <div class="caption">Сильфрина — Ледяная Королева Севера</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/malrisan.jpg" alt="Мальрисан">
+            <div class="frame"></div>
+            <div class="caption">Мальрисан Первый — Король-кузнец Глорсии</div>
+        </div>
+
+        <!-- Добавляй сколько угодно дальше -->
+
+    </div>
+</section>
+
+<footer>
+    © Николай Голубов | Легенда Сумерек — Алрис Спиритлин | 2025<br>
+    Все права защищены. czzsmodern@gmail.com
+</footer>
+
+</body>
+</html>
