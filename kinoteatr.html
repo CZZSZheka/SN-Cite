@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 КИНОТЕАТР СН | Битва Танков - Полный архив (обновлённый 2025)</title>
+    <style>
+        :root {
+            --sn-green: #00ff88;
+            --sn-dark: #0a0a2a;
+            --sn-light: #1a1a3a;
+            --sn-accent: #0066ff;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; }
+        body { background:linear-gradient(135deg,var(--sn-dark) 0%,var(--sn-light) 100%); color:#e0e0e0; min-height:100vh; padding:20px; }
+        .container { max-width:1400px; margin:0 auto; }
+
+        header {
+            text-align:center; padding:40px 20px; background:rgba(10,20,40,0.8); border-radius:20px; margin-bottom:40px;
+            border:3px solid var(--sn-green); box-shadow:0 0 40px rgba(0,255,136,0.2); position:relative; overflow:hidden;
+        }
+        .sn-glow { position:absolute; width:300px; height:300px; background:radial-gradient(circle,rgba(0,255,136,0.2) 0%,transparent 70%); filter:blur(40px); top:-100px; right:-100px; z-index:-1; }
+        h1 { color:var(--sn-green); font-size:3.5rem; margin-bottom:15px; text-shadow:0 0 20px rgba(0,255,136,0.5); font-weight:800; letter-spacing:2px; }
+        .subtitle { color:#aaffcc; font-size:1.3rem; margin-bottom:10px; opacity:0.9; }
+        .tech-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(0,255,136,0.2); color:var(--sn-green); padding:10px 25px; border-radius:50px; font-weight:bold; margin:15px; font-size:1rem; border:2px solid var(--sn-green); backdrop-filter:blur(10px); }
+        .tech-badge::before { content:'⚡'; font-size:1.2rem; }
+
+        .back-btn {
+            position:absolute; top:20px; left:20px; background:rgba(0,255,136,0.15); color:var(--sn-green); border:2px solid var(--sn-green);
+            padding:12px 25px; border-radius:50px; font-weight:bold; text-decoration:none; transition:all 0.3s;
+            display:flex; align-items:center; gap:10px;
+        }
+        .back-btn:hover { background:var(--sn-green); color:black; transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,255,136,0.4); }
+
+        .theater { display:grid; grid-template-columns:3fr 1fr; gap:30px; margin-bottom:50px; }
+        @media (max-width:1024px) { .theater { grid-template-columns:1fr; } }
+
+        .player-section { background:rgba(20,25,50,0.9); border-radius:20px; padding:25px; border:2px solid #334466; box-shadow:0 15px 35px rgba(0,0,0,0.4); }
+        .player-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:15px; border-bottom:2px solid rgba(0,255,136,0.3); }
+        .player-title { color:var(--sn-green); font-size:1.8rem; font-weight:bold; }
+        .player-controls { display:flex; gap:15px; }
+        .control-btn { background:rgba(0,255,136,0.1); color:var(--sn-green); border:2px solid var(--sn-green); padding:10px 20px; border-radius:10px; cursor:pointer; font-weight:bold; transition:all 0.3s; display:flex; align-items:center; gap:8px; }
+        .control-btn:hover { background:var(--sn-green); color:black; transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,255,136,0.4); }
+        .control-btn:disabled { opacity:0.3; cursor:not-allowed; transform:none; }
+
+        .player-container { background:#000; border-radius:15px; overflow:hidden; margin-bottom:25px; position:relative; min-height:550px; border:3px solid var(--sn-green); }
+        #turbowarp-frame { width:100%; height:550px; border:none; display:block; }
+        .loading-overlay { position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.95); display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--sn-green); font-size:1.5rem; z-index:100; }
+        .loader { width:60px; height:60px; border:5px solid rgba(0,255,136,0.2); border-top:5px solid var(--sn-green); border-radius:50%; animation:spin 1s linear infinite; margin-bottom:20px; }
+        @keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+
+        .episode-info { background:rgba(30,35,60,0.7); padding:25px; border-radius:15px; border-left:5px solid var(--sn-green); }
+        .episode-info h2 { color:var(--sn-green); margin-bottom:10px; font-size:1.8rem; }
+        .episode-desc { line-height:1.6; color:#cccccc; font-size:1.1rem; margin-bottom:20px; }
+        .episode-meta { display:flex; gap:25px; color:#88aaff; font-size:0.95rem; flex-wrap:wrap; }
+        .meta-item { display:flex; align-items:center; gap:8px; }
+
+        .playlist { background:rgba(20,25,50,0.9); border-radius:20px; padding:25px; border:2px solid #334466; max-height:900px; overflow-y:auto; }
+        .playlist-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:25px; padding-bottom:15px; border-bottom:2px solid rgba(0,255,136,0.3); }
+        .playlist-title { color:var(--sn-green); font-size:1.8rem; font-weight:bold; display:flex; align-items:center; gap:10px; }
+        .episode-count { background:var(--sn-green); color:black; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.9rem; }
+
+        .season-title { color:#ffaa00; font-size:1.4rem; margin:30px 0 15px; font-weight:bold; text-align:center; }
+        .episode-card { background:rgba(40,45,70,0.6); border-radius:15px; padding:20px; margin-bottom:15px; cursor:pointer; transition:all 0.3s ease; border:2px solid transparent; position:relative; overflow:hidden; }
+        .episode-card::before { content:''; position:absolute; top:0; left:0; width:6px; height:100%; background:linear-gradient(to bottom,var(--ep-color,var(--sn-green)),transparent); }
+        .episode-card:hover { background:rgba(50,55,90,0.9); transform:translateX(5px); border-color:var(--sn-green); box-shadow:0 5px 15px rgba(0,255,136,0.2); }
+        .episode-card.active { background:rgba(0,255,136,0.15); border-color:var(--sn-green); box-shadow:0 0 25px rgba(0,255,136,0.3); transform:translateX(10px); }
+        .episode-card h3 { color:var(--sn-green); margin-bottom:8px; font-size:1.3rem; }
+        .episode-card p { color:#aaaaaa; font-size:0.95rem; line-height:1.5; margin-bottom:10px; }
+        .episode-card.mini { opacity:0.85; font-style:italic; }
+        .episode-footer { display:flex; justify-content:space-between; align-items:center; color:#6688cc; font-size:0.85rem; }
+
+        footer { text-align:center; padding:30px; margin-top:40px; border-top:2px solid rgba(0,255,136,0.2); color:#8899cc; font-size:0.9rem; }
+        .sn-motto { color:var(--sn-green); font-size:1.2rem; margin:15px 0; font-weight:bold; text-shadow:0 0 10px rgba(0,255,136,0.3); }
+
+        .playlist::-webkit-scrollbar { width:10px; }
+        .playlist::-webkit-scrollbar-track { background:rgba(30,35,60,0.5); border-radius:10px; }
+        .playlist::-webkit-scrollbar-thumb { background:var(--sn-green); border-radius:10px; }
+        .playlist::-webkit-scrollbar-thumb:hover { background:#00cc66; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="sn-glow"></div>
+            <a href="index.html" class="back-btn">⬅ На главную</a>
+            <h1>🎬 КИНОТЕАТР СН</h1>
+            <p class="subtitle">Битва Танков • Полный офлайн-архив 2019-2025 • 3 сезона • 38 серий</p>
+            <div class="tech-badge">Turbowarp Embed • Актуально на декабрь 2025</div>
+            <p>Создатель: KriptosL ➜ Текущий главный разработчик: YellowCat2012</p>
+        </header>
+
+        <div class="theater">
+            <section class="player-section">
+                <div class="player-header">
+                    <div class="player-title" id="current-episode-title">Выберите серию...</div>
+                    <div class="player-controls">
+                        <button class="control-btn" id="prev-btn" onclick="prevEpisode()" disabled>⏮ Назад</button>
+                        <button class="control-btn" id="next-btn" onclick="nextEpisode()" disabled>Вперёд ⏭</button>
+                    </div>
+                </div>
+
+                <div class="player-container">
+                    <div class="loading-overlay" id="loading">
+                        <div class="loader"></div>
+                        <div>Загрузка эпизода БТ...</div>
+                    </div>
+                    <iframe id="turbowarp-frame" allowtransparency="true" allowfullscreen loading="lazy"></iframe>
+                </div>
+
+                <div class="episode-info">
+                    <h2 id="ep-title">Битва Танков</h2>
+                    <p class="episode-desc" id="ep-desc">Самый легендарный танковый сериал русского Scratch-сообщества. Выберите серию из плейлиста справа →</p>
+                    <div class="episode-meta">
+                        <div class="meta-item">👤 Сезон 1-2: KriptosL</div>
+                        <div class="meta-item">👤 Сезон 3+: YellowCat2012</div>
+                        <div class="meta-item">📅 2019-н.в.</div>
+                        <div class="meta-item">🔥 36 + 2 минисерии</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="playlist">
+                <div class="playlist-header">
+                    <div class="playlist-title">
+                        📼 Все серии
+                        <span class="episode-count" id="ep-count">38</span>
+                    </div>
+                </div>
+
+                <div id="playlist-container"></div>
+            </section>
+        </div>
+
+        <footer>
+            <div class="sn-motto">LUX IN TENEBRIS • СВЕТ ВО ТЬМЕ</div>
+            <p>Архив сообщества Николая • Полная автономность • Вечное хранение</p>
+            <p>Слава СН! Слава братству! Слава Битве Танков!</p>
+        </footer>
+    </div>
+
+    <script>
+        const episodes = [
+            // Сезон 1
+            {id:1, title:"Серия 1 – КВ-6 и RATTE", desc:"Первая встреча КВ-6 и Ратте. Начало легендарной войны.", scratchId:"817873059", season:1},
+            {id:2, title:"Серия 2 – Месть КВ-6", desc:"КВ-6 возвращается и уничтожает Ратте взрывом боеукладки.", scratchId:"818209415", season:1},
+            {id:3, title:"Серия 3 – Новый враг", desc:"ТГ-5 создаёт Ликвидатора из трупа Ратте.", scratchId:"818210268", season:1},
+            {id:4, title:"Серия 4 – Не конец", desc:"Ликвидатор раскрывает свой потенциал против советских монстров.", scratchId:"818212312", season:1},
+            {id:5, title:"Серия 5 – Неожиданность", desc:"Появление загадочного Т-99, гибель КВ-2.", scratchId:"818213136", season:1},
+            {id:6, title:"Серия 6 – Левиафан", desc:"Владыка ада Левиафан выходит на сцену.", scratchId:"818215639", season:1},
+            {id:7, title:"Серия 7 – Диверсия", desc:"Диверсант уничтожает ТГ-5.", scratchId:"818217808", season:1},
+            {id:8, title:"Серия 8 – Царские танки", desc:"Ликвидатор против Менделеева и Российской Империи.", scratchId:"818225421", season:1},
+            {id:9, title:"Серия 9 – Советский ТГ-5", desc:"ТГ-5 перепрограммирован на сторону СССР.", scratchId:"818228180", season:1},
+            {id:10, title:"Серия 10 – Тяжёлый бой", desc:"Битва ТГ-5 и Альбуса 13.", scratchId:"819576522", season:1},
+            {id:11, title:"Серия 11 – Мир Левиафана", desc:"Внутренние разборки в аду.", scratchId:"819577719", season:1},
+            {id:12, title:"Серия 12 – Конец?", desc:"Альбус-6 мстит за брата, Левиафан возвращается.", scratchId:"819585078", season:1},
+            {id:13, title:"Серия 13 – Империя", desc:"Битвы за Российскую Империю.", scratchId:"821788763", season:1},
+            {id:14, title:"Серия 14 – Противостояние", desc:"КВ-33 и Царь-Пушка против Альбуса-6.", scratchId:"821790596", season:1},
+            {id:15, title:"Серия 15 – Война с США", desc:"Ликвидатор в Америке, появление Yellow Giant.", scratchId:"821791413", season:1},
+            {id:16, title:"Серия 16 – Новый воин", desc:"Американский ТГ-5 против Левиафана.", scratchId:"821792866", season:1},
+            {id:17, title:"Минисерия – Возвращение КВ-2", desc:"КВ-2 воскрешён в аду как падший ангел.", scratchId:"821793468", season:1, mini:true},
+            {id:18, title:"Минисерия – Силы зла", desc:"ТГ-7 получает приказ уничтожить советского монстра.", scratchId:"821794302", season:1, mini:true},
+            {id:19, title:"Серия 17 – Война стальных монстров", desc:"Захват немецкой базы, гибель ТГ-7 от Т-99.", scratchId:"821799182", season:1},
+
+            // Сезон 2
+            {id:20, title:"Серия 18 – Захват базы", desc:"ПТ-77 и Т-99 захватывают немецкую базу.", scratchId:"823391637", season:2},
+            {id:21, title:"Серия 19 – Дорога в бункер", desc:"Падшие ангелы в пустошах ада.", scratchId:"823393250", season:2},
+            {id:22, title:"Серия 20 – Сила Левиафана", desc:"Крупная битва ТГ-5 (амер.) и Левиафана.", scratchId:"823400125", season:2},
+            {id:23, title:"Серия 21 – Шпион", desc:"Металл М подслушивает планы союзников.", scratchId:"823402532", season:2},
+            {id:24, title:"Серия 22 – Оружие разрушений", desc:"Появление сверхорудия Дора.", scratchId:"823405066", season:2},
+            {id:25, title:"Серия 23 – Морской бой", desc:"Вторжение немецкого флота в США.", scratchId:"823408188", season:2},
+            {id:26, title:"Серия 24 – Сражение титанов", desc:"Дуэль Левиафана и Т-99.", scratchId:"823450972", season:2},
+            {id:27, title:"Серия 25 – Тайна старой базы", desc:"Диверсант ищет секретные документы.", scratchId:"823452516", season:2},
+            {id:28, title:"Серия 26 – Выстрел Доры", desc:"Разгром американской армии, появление ИС-23.", scratchId:"823454395", season:2},
+            {id:29, title:"Серия 27 – Реванш", desc:"ИС-23 против Альбуса-6.", scratchId:"823457443", season:2},
+            {id:30, title:"Серия 28 – Во имя царя!", desc:"Оборона Российской Империи, Железный Капут.", scratchId:"823468875", season:2},
+            {id:31, title:"Серия 29 – Начало конца", desc:"Создание КВ-6/7, масштабная битва.", scratchId:"823471520", season:2},
+            {id:32, title:"Серия 30 – Надежды нет", desc:"Гибель ПТ-77, уничтожение Альбуса-6.", scratchId:"823472484", season:2},
+            {id:33, title:"Серия 31 – Восстание ада", desc:"Восстание ДША, создание ДШТ-Кинжала.", scratchId:"823473545", season:2},
+            {id:34, title:"Серия 32 – Война окончена?", desc:"Термоядерный выстрел Левиафана.", scratchId:"823474936", season:2},
+            {id:35, title:"Серия 33 – Возвращение Ра", desc:"Древний бог Ра готовится к реваншу.", scratchId:"823477376", season:2},
+            {id:36, title:"Серия 34 – Вторжение в ад", desc:"Финал 2-го сезона. Гибель Левиафана.", scratchId:"804942197", season:2},
+
+            // Сезон 3
+            {id:37, title:"Серия 35 – Бункер", desc:"Падшие ангелы, встреча братьев, Неллита.", scratchId:"1000382269", season:3},
+            {id:38, title:"Серия 36 – Возрождения США", desc:"Новейшая серия (2025). Продолжение после гибели Левиафана.", scratchId:"1046855514", season:3}
+        ];
+
+        let currentEpisodeIndex = 0;
+
+        function init() {
+            renderPlaylist();
+            loadEpisode(0);
+            document.getElementById('ep-count').textContent = episodes.length;
+        }
+
+        function renderPlaylist() {
+            const container = document.getElementById('playlist-container');
+            container.innerHTML = '';
+            let currentSeason = 0;
+
+            episodes.forEach((ep, i) => {
+                if (ep.season !== currentSeason) {
+                    currentSeason = ep.season;
+                    const seasonDiv = document.createElement('div');
+                    seasonDiv.className = 'season-title';
+                    seasonDiv.textContent = `Сезон ${currentSeason}`;
+                    container.appendChild(seasonDiv);
+                }
+
+                const card = document.createElement('div');
+                card.className = `episode-card ${ep.mini ? 'mini' : ''}`;
+                card.style.setProperty('--ep-color', ep.season === 1 ? '#00ff88' : ep.season === 2 ? '#ffaa00' : '#ff0066');
+                card.onclick = () => loadEpisode(i);
+
+                card.innerHTML = `
+                    <h3>${ep.title}${ep.mini ? ' (мини)' : ''}</h3>
+                    <p>${ep.desc}</p>
+                    <div class="episode-footer">
+                        <span>Серия ${ep.id}</span>
+                        <span>Сезон ${ep.season}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function loadEpisode(index) {
+            currentEpisodeIndex = index;
+            const ep = episodes[index];
+
+            const loading = document.getElementById('loading');
+            const frame = document.getElementById('turbowarp-frame');
+            loading.style.display = 'flex';
+
+            const turbowarpUrl = `https://turbowarp.org/${ep.scratchId}/embed?autoplay&settings-button&fullscreen-background=black`;
+            frame.src = turbowarpUrl;
+
+            document.getElementById('current-episode-title').textContent = ep.title;
+            document.getElementById('ep-title').textContent = ep.title;
+            document.getElementById('ep-desc').textContent = ep.desc;
+
+            document.querySelectorAll('.episode-card').forEach((c, i) => {
+                c.classList.toggle('active', i === index);
+            });
+
+            document.getElementById('prev-btn').disabled = index === 0;
+            document.getElementById('next-btn').disabled = index === episodes.length - 1;
+
+            setTimeout(() => loading.style.display = 'none', 2500);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function prevEpisode() { if (currentEpisodeIndex > 0) loadEpisode(currentEpisodeIndex - 1); }
+        function nextEpisode() { if (currentEpisodeIndex < episodes.length - 1) loadEpisode(currentEpisodeIndex + 1); }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') prevEpisode();
+            if (e.key === 'ArrowRight') nextEpisode();
+        });
+
+        window.onload = init;
+    </script>
+</body>
+</html>
